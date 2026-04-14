@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON NOIR — Timeless Elegance. Modern Simplicity.</title>
+<meta name="description" content="MAISON NOIR — A luxury fashion brand celebrating the art of understated luxury. Clean lines, premium fabrics, timeless design.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="#home" class="logo" data-nav>Maison Noir</a>
+        <nav>
+          <ul class="main-nav" role="list">
+            <li><a href="#shop" data-nav>Shop</a></li>
+            <li><a href="#about" data-nav>About</a></li>
+            <li><a href="#contact" data-nav>Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+        <button class="icon-btn bag-btn" aria-label="Shopping bag" id="bagBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="bag-count" id="bagCount">0</span>
+        </button>
+        <button class="icon-btn mobile-menu-btn" aria-label="Open menu" id="menuToggle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <a href="#home" data-nav onclick="closeMobileNav()">Home</a>
+    <a href="#shop" data-nav onclick="closeMobileNav()">Shop</a>
+    <a href="#about" data-nav onclick="closeMobileNav()">About</a>
+    <a href="#contact" data-nav onclick="closeMobileNav()">Contact</a>
+  </div>
+
+  <!-- ========== BAG SIDEBAR ========== -->
+  <div class="bag-overlay" id="bagOverlay"></div>
+  <aside class="bag-sidebar" id="bagSidebar">
+    <div class="bag-sidebar-header">
+      <h3>Shopping Bag</h3>
+      <button class="icon-btn" id="closeBag" aria-label="Close bag">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="bag-items" id="bagItems">
+      <div class="bag-empty">
+        <p>Your bag is empty</p>
+        <a href="#shop" data-nav class="btn-primary-solid" onclick="closeBagPanel()">Continue Shopping</a>
+      </div>
+    </div>
+    <div class="bag-footer" id="bagFooter" style="display:none;">
+      <div class="bag-total">
+        <span>Total</span>
+        <span id="bagTotal">€0</span>
+      </div>
+      <button class="btn-primary-solid bag-checkout">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       PAGE: HOME
+       ========================================== -->
+  <main id="page-home" class="page">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-image-wrap">
+        <img src="./assets/hero.png" alt="Fashion model wearing oversized black coat" width="1920" height="1080" loading="eager">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-brand">Maison Noir</h1>
+        <p class="hero-tagline">Timeless Elegance. Modern Simplicity.</p>
+        <a href="#shop" data-nav class="btn-primary">Shop Collection</a>
+      </div>
+    </section>
+
+    <!-- Featured Collection -->
+    <section class="collection" id="homeCollection">
+      <div class="container">
+        <div class="collection-header reveal">
+          <p class="section-label">Featured Collection</p>
+          <h2 class="section-title">Spring 2026</h2>
+        </div>
+        <div class="products-grid" id="featuredGrid"></div>
+        <div class="collection-cta reveal">
+          <a href="#shop" data-nav class="btn-outline-dark">View All Products</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Story teaser -->
+    <section class="brand-story">
+      <div class="container">
+        <div class="brand-story-inner">
+          <div class="brand-story-image reveal">
+            <img src="./assets/brand-story.png" alt="MAISON NOIR Parisian atelier" width="800" height="600" loading="lazy">
+          </div>
+          <div class="brand-story-content reveal reveal-delay-2">
+            <p class="section-label">Our Story</p>
+            <h2>The Art of Restraint</h2>
+            <p>Born in the ateliers of Paris, MAISON NOIR celebrates the art of understated luxury. Every piece is crafted with intention — clean lines, premium fabrics, and a palette that transcends seasons.</p>
+            <p>We believe in the power of simplicity. In a world of excess, we choose restraint. Each garment is designed to become a lasting part of your wardrobe, not a fleeting trend.</p>
+            <a href="#about" data-nav class="btn-text">Discover More <span class="btn-text-arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+      <div class="marquee-track" aria-hidden="true">
+        <span class="marquee-item">New Arrivals <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Spring 2026 <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Free Shipping Over €150 <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Sustainable Fashion <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">New Arrivals <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Spring 2026 <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Free Shipping Over €150 <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Sustainable Fashion <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">New Arrivals <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Spring 2026 <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Free Shipping Over €150 <span class="marquee-dot">•</span></span>
+        <span class="marquee-item">Sustainable Fashion <span class="marquee-dot">•</span></span>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <div class="container">
+        <div class="newsletter-inner reveal">
+          <h2>Join Our World</h2>
+          <p>Be the first to know about new collections, exclusive offers, and the stories behind our craft.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = 'Thank you ✓'; this.querySelector('input').value = '';">
+            <input type="email" placeholder="Your email address" required autocomplete="email">
+            <button type="submit" class="btn-subscribe">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       PAGE: SHOP (Women's Collection)
+       ========================================== -->
+  <main id="page-shop" class="page" style="display:none;">
+    <div class="page-hero-banner">
+      <img src="./assets/women-hero.png" alt="Women's collection runway" width="1920" height="600" loading="lazy">
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <p class="section-label" style="color:rgba(255,255,255,0.7);">Women's Collection</p>
+        <h1 class="page-hero-title">Spring 2026</h1>
+        <p class="page-hero-sub">Timeless silhouettes crafted with intention</p>
+      </div>
+    </div>
+
+    <div class="container shop-container">
+      <!-- Filter bar -->
+      <div class="shop-filters reveal">
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="tops">Tops</button>
+          <button class="filter-btn" data-filter="dresses">Dresses</button>
+          <button class="filter-btn" data-filter="outerwear">Outerwear</button>
+          <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+          <button class="filter-btn" data-filter="accessories">Accessories</button>
+        </div>
+        <div class="shop-sort">
+          <select id="sortSelect" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="shop-results-count reveal">
+        <span id="resultsCount">6 Products</span>
+      </div>
+
+      <!-- Product grid -->
+      <div class="products-grid" id="shopGrid"></div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       PAGE: PRODUCT DETAIL
+       ========================================== -->
+  <main id="page-product" class="page" style="display:none;">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#home" data-nav>Home</a>
+        <span>/</span>
+        <a href="#shop" data-nav>Shop</a>
+        <span>/</span>
+        <span id="breadcrumbProduct">Product</span>
+      </nav>
+
+      <div class="product-detail">
+        <div class="product-detail-gallery">
+          <div class="product-detail-main-img">
+            <img id="productDetailImg" src="./assets/product-1.png" alt="" width="800" height="1066" loading="lazy">
+          </div>
+        </div>
+        <div class="product-detail-info">
+          <p class="product-detail-category" id="productDetailCategory">Tops</p>
+          <h1 class="product-detail-name" id="productDetailName">Product Name</h1>
+          <p class="product-detail-price" id="productDetailPrice">€0</p>
+
+          <div class="product-detail-desc" id="productDetailDesc">
+            <p>Crafted from the finest materials, this piece embodies the MAISON NOIR philosophy of understated elegance.</p>
+          </div>
+
+          <div class="product-detail-options">
+            <div class="option-group">
+              <label class="option-label">Size</label>
+              <div class="size-buttons">
+                <button class="size-btn">XS</button>
+                <button class="size-btn active">S</button>
+                <button class="size-btn">M</button>
+                <button class="size-btn">L</button>
+                <button class="size-btn">XL</button>
+              </div>
+            </div>
+            <div class="option-group">
+              <label class="option-label">Quantity</label>
+              <div class="qty-control">
+                <button class="qty-btn" id="qtyMinus">−</button>
+                <span class="qty-value" id="qtyValue">1</span>
+                <button class="qty-btn" id="qtyPlus">+</button>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-primary-solid add-to-bag-detail" id="addToBagDetail">Add to Bag</button>
+
+          <div class="product-detail-extras">
+            <div class="detail-accordion">
+              <button class="accordion-toggle" data-accordion="details">
+                <span>Product Details</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="accordion-content" id="accordion-details">
+                <ul>
+                  <li>Premium quality fabric</li>
+                  <li>Ethically sourced materials</li>
+                  <li>Designed and crafted in Paris</li>
+                  <li>Dry clean recommended</li>
+                </ul>
+              </div>
+            </div>
+            <div class="detail-accordion">
+              <button class="accordion-toggle" data-accordion="shipping">
+                <span>Shipping & Returns</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="accordion-content" id="accordion-shipping">
+                <ul>
+                  <li>Free shipping on orders over €150</li>
+                  <li>Standard delivery: 3-5 business days</li>
+                  <li>Express delivery: 1-2 business days</li>
+                  <li>30-day return policy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related products -->
+      <section class="related-products">
+        <h2 class="section-title" style="text-align:center; margin-bottom: var(--space-10);">You May Also Like</h2>
+        <div class="products-grid" id="relatedGrid"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       PAGE: ABOUT
+       ========================================== -->
+  <main id="page-about" class="page" style="display:none;">
+    <!-- About Hero -->
+    <div class="page-hero-banner about-hero-banner">
+      <img src="./assets/about-atelier.png" alt="MAISON NOIR atelier in Paris" width="1920" height="600" loading="lazy">
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <p class="section-label" style="color:rgba(255,255,255,0.7);">Our Story</p>
+        <h1 class="page-hero-title">The Art of Restraint</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Founder section -->
+      <section class="about-founder reveal">
+        <div class="about-founder-grid">
+          <div class="about-founder-image">
+            <img src="./assets/founder-portrait.png" alt="Claire Dubois, Founder" width="600" height="800" loading="lazy">
+          </div>
+          <div class="about-founder-text">
+            <p class="section-label">The Founder</p>
+            <h2>Claire Dubois</h2>
+            <p>After a decade at the helm of some of Paris's most prestigious fashion houses, Claire Dubois founded MAISON NOIR in 2019 with a singular vision: to create clothing that whispers rather than shouts.</p>
+            <p>"I wanted to build a brand that respects both the wearer and the craft. Every seam, every cut, every fabric choice is deliberate. We don't follow trends — we create wardrobes that transcend them."</p>
+            <p class="founder-quote">"Elegance is the art of knowing what to leave out."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values section -->
+      <section class="about-values">
+        <div class="about-values-header reveal">
+          <p class="section-label">Our Values</p>
+          <h2 class="section-title">What We Stand For</h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal reveal-delay-1">
+            <div class="value-number">01</div>
+            <h3>Craftsmanship</h3>
+            <p>Every piece is meticulously crafted by skilled artisans in our Parisian atelier. We believe in the human touch — no shortcuts, no compromises.</p>
+          </div>
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-number">02</div>
+            <h3>Sustainability</h3>
+            <p>We source only ethically produced, natural fabrics. Our supply chain is transparent, and we are committed to reducing our environmental footprint every season.</p>
+          </div>
+          <div class="value-card reveal reveal-delay-3">
+            <div class="value-number">03</div>
+            <h3>Timelessness</h3>
+            <p>We design for longevity, not fleeting trends. Our pieces are meant to be worn season after season, growing more beautiful with time.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sustainability / Materials -->
+      <section class="about-materials reveal">
+        <div class="about-materials-grid">
+          <div class="about-materials-text">
+            <p class="section-label">Materials</p>
+            <h2>Premium, Responsible Sourcing</h2>
+            <p>From Italian silk mills to Scottish cashmere weavers, we partner with the world's finest fabric producers who share our commitment to quality and ethical practices.</p>
+            <div class="materials-list">
+              <div class="material-item">
+                <span class="material-name">Organic Silk</span>
+                <span class="material-origin">Lake Como, Italy</span>
+              </div>
+              <div class="material-item">
+                <span class="material-name">Cashmere</span>
+                <span class="material-origin">Scottish Highlands</span>
+              </div>
+              <div class="material-item">
+                <span class="material-name">Merino Wool</span>
+                <span class="material-origin">New Zealand</span>
+              </div>
+              <div class="material-item">
+                <span class="material-name">French Linen</span>
+                <span class="material-origin">Normandy, France</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-materials-image">
+            <img src="./assets/sustainability.png" alt="Premium fabrics and materials" width="800" height="450" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="about-timeline reveal">
+        <p class="section-label" style="text-align:center;">Our Journey</p>
+        <h2 class="section-title" style="text-align:center; margin-bottom: var(--space-12);">Milestones</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-content">
+              <h3>The Beginning</h3>
+              <p>MAISON NOIR launches with a debut collection of 12 essential pieces from a small atelier in Le Marais, Paris.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-content">
+              <h3>Going Digital</h3>
+              <p>Launch of our online store, bringing Parisian elegance to a global audience. Featured in Vogue Paris.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+              <h3>Sustainability Pledge</h3>
+              <p>Achieved B Corp certification. 100% of fabrics now sourced from ethical, sustainable suppliers.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-content">
+              <h3>Spring Collection</h3>
+              <p>Our most refined collection yet — a celebration of minimalist design and conscious luxury.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       PAGE: CONTACT
+       ========================================== -->
+  <main id="page-contact" class="page" style="display:none;">
+    <div class="container">
+      <div class="contact-page">
+        <div class="contact-page-header reveal">
+          <p class="section-label">Get in Touch</p>
+          <h1 class="section-title">We'd Love to Hear<br>From You</h1>
+          <p class="contact-intro">Whether you have a question about our collections, sizing, or anything else — our team is here to help.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-form-wrap reveal">
+            <form class="contact-form" id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" placeholder="Claire" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" placeholder="Dubois">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" placeholder="hello@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject">
+                  <option value="">Select a topic</option>
+                  <option value="order">Order Inquiry</option>
+                  <option value="sizing">Sizing Help</option>
+                  <option value="returns">Returns & Exchanges</option>
+                  <option value="wholesale">Wholesale</option>
+                  <option value="press">Press & Media</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="5" placeholder="Tell us how we can help..." required></textarea>
+              </div>
+              <button type="submit" class="btn-primary-solid">Send Message</button>
+            </form>
+          </div>
+
+          <div class="contact-info reveal reveal-delay-2">
+            <div class="contact-info-block">
+              <h3>Visit Our Atelier</h3>
+              <p>12 Rue de Sévigné<br>Le Marais, 75004 Paris<br>France</p>
+            </div>
+            <div class="contact-info-block">
+              <h3>Hours</h3>
+              <p>Monday – Friday: 10:00 – 19:00<br>Saturday: 11:00 – 18:00<br>Sunday: Closed</p>
+            </div>
+            <div class="contact-info-block">
+              <h3>Email</h3>
+              <p><a href="mailto:hello@maisonnoir.com">hello@maisonnoir.com</a></p>
+            </div>
+            <div class="contact-info-block">
+              <h3>Phone</h3>
+              <p>+33 1 42 78 00 00</p>
+            </div>
+            <div class="contact-info-block">
+              <h3>Follow Us</h3>
+              <div class="contact-social">
+                <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Pinterest</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">X</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" data-nav class="logo">Maison Noir</a>
+          <p>Timeless elegance and modern simplicity. Crafted in Paris with intention and care.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Pinterest" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 21c1.85-1.61 2.68-4.05 3.14-5.88.46.88 1.8 1.65 3.22 1.65 4.25 0 7.14-3.87 7.14-8.27C21.5 4.82 18.14 2 13.43 2 7.57 2 4.5 5.65 4.5 9.77c0 2.39 1.28 4.27 3.32 5.02"/></svg>
+            </a>
+            <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul role="list">
+            <li><a href="#shop" data-nav data-filter-link="all">All Products</a></li>
+            <li><a href="#shop" data-nav data-filter-link="tops">Tops</a></li>
+            <li><a href="#shop" data-nav data-filter-link="dresses">Dresses</a></li>
+            <li><a href="#shop" data-nav data-filter-link="outerwear">Outerwear</a></li>
+            <li><a href="#shop" data-nav data-filter-link="accessories">Accessories</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <ul role="list">
+            <li><a href="#about" data-nav>Our Story</a></li>
+            <li><a href="#about" data-nav>Sustainability</a></li>
+            <li><a href="#contact" data-nav>Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul role="list">
+            <li><a href="#contact" data-nav>Shipping</a></li>
+            <li><a href="#contact" data-nav>Returns</a></li>
+            <li><a href="#contact" data-nav>Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MAISON NOIR. All rights reserved.</p>
+        <div>
+          <a href="#" target="_blank" rel="noopener noreferrer">Designed by Shir Alhanati</a>
+          <span style="color: var(--color-text-faint); margin-inline: var(--space-2);">·</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== APP JAVASCRIPT ========== -->
+  <script src="./app.js"></script>
+</body>
+</html>
